@@ -1,225 +1,10 @@
 <div align="center">
-    
-    <img src="https://img.shields.io/badge/CogniWork-7C3AED?style=for-the-badge&labelColor=1a1a2e" alt="CogniWork"/>
-    
-    # CogniWork
-    
-    ### Open Source AI Orchestration Platform
-    
-    **Stop drowning in tabs. Start orchestrating your workflow.**
-    
-    [![MIT License](https://img.shields.io/badge/License-MIT-7C3AED.svg?style=flat-square)](LICENSE)
-    [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-3776ab.svg?style=flat-square&logo=python&logoColor=white)](https://python.org)
-    [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
-    [![Discord](https://img.shields.io/badge/Discord-Join%20Us-7C3AED?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/viseyyon)
-    
-    <br/>
-    
-    *"I don't have a productivity problem. I have an orchestration problem."*
-    
-    <br/>
-    
-    [Quick Start](#-quick-start) | [Features](#-features) | [Examples](#-examples) | [Docs](#-documentation) | [Community](#-community)
-    
-    </div>
-    
-    ---
-    
-    ## The Problem
-    
-    Every developer knows the feeling:
-    
-    ```
-    2:00 AM
-    47 browser tabs open
-    4th cup of coffee
-    Manually copy-pasting between ChatGPT, IDE, logs, and docs
-    ```
-    
-    **You're not coding. You're just frantic glue holding disjointed AI tools together.**
-    
-    ## The Solution
-    
-    CogniWork orchestrates your AI agents so they work **together**, not in silos.
-    
-    ```python
-    from cogniwork import Agent, Orchestrator
-    
-    # Create specialized agents
-    coder = Agent("CodeWriter", model="gpt-4")
-    reviewer = Agent("CodeReviewer", model="claude-3")
-    tester = Agent("TestWriter", model="gpt-4")
-    
-    # Orchestrate them
-    orchestra = Orchestrator()
-    orchestra.add_agent(coder)
-    orchestra.add_agent(reviewer)
-    orchestra.add_agent(tester)
-    
-    # Run in parallel - they work while you sleep
-    results = await orchestra.run_parallel([
-        {"agent": "CodeWriter", "task": "Implement user auth"},
-            {"agent": "CodeReviewer", "task": "Review the PR"},
-                {"agent": "TestWriter", "task": "Write unit tests"}
-                ])
-                ```
-                
-                ---
-                
-                ## Quick Start
-                
-                ### One-Line Install
-                
-                ```bash
-                pip install cogniwork
-                ```
-                
-                ### Or Clone and Run
-                
-                ```bash
-                # Clone the repo
-                git clone https://github.com/viseyyon/cogniwork-trial.git
-                cd cogniwork-trial
-                
-                # Install dependencies
-                pip install -e .
-                
-                # Run your first agent
-                python -c "from cogniwork import Agent; print('CogniWork Ready!')"
-                ```
-                
-                ### 30-Second Demo
-                
-                ```python
-                import asyncio
-                from cogniwork import Agent
-                
-                async def main():
-                    # Create an agent
-                        agent = Agent("MyAssistant")
-                        
-                            # Run a task
-                                result = await agent.run("Analyze this codebase")
-                                    print(f"Done: {result.output}")
-                                    
-                                    asyncio.run(main())
-                                    ```
-                                    
-                                    ---
-                                    
-                                    ## Features
-                                    
-                                    | Feature | Description |
-                                    |---------|-------------|
-                                    | **Multi-Agent** | Run multiple AI agents in parallel |
-                                    | **Memory** | Agents remember context across sessions |
-                                    | **Tools** | Integrate GitHub, Slack, Jira, and more |
-                                    | **Workflows** | Chain agents in sequences |
-                                    | **Multi-LLM** | OpenAI, Anthropic, Ollama, Azure |
-                                    | **Open Core** | MIT licensed, free forever |
-                                    
-                                    ---
-                                    
-                                    ## What's Included
-                                    
-                                    ```
-                                    cogniwork/
-                                        __init__.py      # Package entry point
-                                            core.py          # Agent, Memory, Orchestrator
-                                                tools.py         # Tool framework and registry
-                                                    config.py        # Configuration management
-                                                    ```
-                                                    
-                                                    ---
-                                                    
-                                                    ## Why CogniWork?
-                                                    
-                                                    | | CogniWork | Enterprise Tools |
-                                                    |---|:---:|:---:|
-                                                    | **Price** | $0 FREE | $50K+/year |
-                                                    | **Open Source** | Yes (MIT) | No |
-                                                    | **Self-Hosted** | Your servers | Their cloud |
-                                                    | **Customizable** | Full control | Limited |
-                                                    | **Lock-in** | None | Vendor lock |
-                                                    
-                                                    ---
-                                                    
-                                                    ## Examples
-                                                    
-                                                    ### Code Review Pipeline
-                                                    
-                                                    ```python
-                                                    orchestra = Orchestrator()
-                                                    orchestra.create_workflow("code_review", [
-                                                        "StaticAnalyzer",
-                                                            "SecurityScanner",
-                                                                "CodeReviewer",
-                                                                    "DocumentationChecker"
-                                                                    ])
-                                                                    
-                                                                    results = await orchestra.run_workflow("code_review", "Review PR #123")
-                                                                    ```
-                                                                    
-                                                                    ### Automated Bug Triage
-                                                                    
-                                                                    ```python
-                                                                    from cogniwork import Agent
-                                                                    from cogniwork.tools import create_shell_tool
-                                                                    
-                                                                    bug_agent = Agent("BugTriager")
-                                                                    bug_agent.add_tool(create_shell_tool())
-                                                                    
-                                                                    result = await bug_agent.run("Analyze error logs and create Jira tickets")
-                                                                    ```
-                                                                    
-                                                                    ---
-                                                                    
-                                                                    ## Documentation
-                                                                    
-                                                                    | Resource | Link |
-                                                                    |----------|------|
-                                                                    | Getting Started | [docs.cogniwork.ai](https://docs.cogniwork.ai) |
-                                                                    | API Reference | [docs.cogniwork.ai/api](https://docs.cogniwork.ai/api) |
-                                                                    | Examples | [/examples](./examples) |
-                                                                    
-                                                                    ---
-                                                                    
-                                                                    ## Community
-                                                                    
-                                                                    [![Discord](https://img.shields.io/badge/Discord-Join_Community-7C3AED?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/viseyyon)
-                                                                    [![Twitter](https://img.shields.io/badge/Twitter-@viseyyon-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/viseyyon)
-                                                                    
-                                                                    **Need help?** [Join Discord](https://discord.gg/viseyyon)
-                                                                    
-                                                                    **Found a bug?** [Open an Issue](https://github.com/viseyyon/cogniwork-trial/issues)
-                                                                    
-                                                                    **Want to contribute?** [Read CONTRIBUTING.md](CONTRIBUTING.md)
-                                                                    
-                                                                    ---
-                                                                    
-                                                                    ## License
-                                                                    
-                                                                    MIT License - Use it for anything. Free forever.
-                                                                    
-                                                                    ---
-                                                                    
-                                                                    <div align="center">
-                                                                    
-                                                                    **Built with care by [Viseyyon Technologies](https://viseyyon.com)**
-                                                                    
-                                                                    *Transform Your Business with AI-Powered Intelligence*
-                                                                    
-                                                                    <br/>
-                                                                    
-                                                                    <a href="https://viseyyon.com"><img src="https://img.shields.io/badge/Viseyyon-Technologies-7C3AED?style=for-the-badge" alt="Viseyyon"/></a>
-                                                                    
-                                                                    </div><div align="center">
 
-<img src="https://img.shields.io/badge/ð§ -CogniWork-7C3AED?style=for-the-badge&labelColor=1a1a2e" alt="CogniWork"/>
+<img src="https://img.shields.io/badge/CogniWork-7C3AED?style=for-the-badge&labelColor=1a1a2e" alt="CogniWork"/>
 
 # CogniWork
 
-### ð Open Source AI Orchestration Platform
+### Open Source AI Orchestration Platform
 
 **Stop drowning in tabs. Start orchestrating your workflow.**
 
@@ -234,30 +19,26 @@
 
 <br/>
 
-[Quick Start](#-quick-start) â¢
-[Features](#-features) â¢
-[Examples](#-examples) â¢
-[Documentation](#-documentation) â¢
-[Community](#-community)
+[Quick Start](#-quick-start) | [Features](#-features) | [Examples](#-examples) | [Docs](#-documentation) | [Community](#-community)
 
 </div>
 
 ---
 
-## ð¡ The Problem
+## The Problem
 
 Every developer knows the feeling:
 
 ```
-ð 2:00 AM
-ð 47 browser tabs open
-â 4th cup of coffee
-ð« Manually copy-pasting between ChatGPT, IDE, logs, and docs
+2:00 AM
+47 browser tabs open
+4th cup of coffee
+Manually copy-pasting between ChatGPT, IDE, logs, and docs
 ```
 
 **You're not coding. You're just frantic glue holding disjointed AI tools together.**
 
-## â¨ The Solution
+## The Solution
 
 CogniWork orchestrates your AI agents so they work **together**, not in silos.
 
@@ -275,7 +56,7 @@ orchestra.add_agent(coder)
 orchestra.add_agent(reviewer)
 orchestra.add_agent(tester)
 
-# Run in parallel - they work while you sleep ð´
+# Run in parallel - they work while you sleep
 results = await orchestra.run_parallel([
     {"agent": "CodeWriter", "task": "Implement user auth"},
     {"agent": "CodeReviewer", "task": "Review the PR"},
@@ -285,7 +66,7 @@ results = await orchestra.run_parallel([
 
 ---
 
-## â¡ Quick Start
+## Quick Start
 
 ### One-Line Install
 
@@ -293,7 +74,7 @@ results = await orchestra.run_parallel([
 pip install cogniwork
 ```
 
-### Or Clone & Run
+### Or Clone and Run
 
 ```bash
 # Clone the repo
@@ -304,14 +85,14 @@ cd cogniwork-trial
 pip install -e .
 
 # Run your first agent
-python -c "from cogniwork import Agent; print('ð§  CogniWork Ready!')"
+python -c "from cogniwork import Agent; print('CogniWork Ready!')"
 ```
 
 ### 30-Second Demo
 
 ```python
 import asyncio
-from cogniwork import Agent, Orchestrator
+from cogniwork import Agent
 
 async def main():
     # Create an agent
@@ -319,51 +100,51 @@ async def main():
 
     # Run a task
     result = await agent.run("Analyze this codebase")
-    print(f"â {result.output}")
+    print(f"Done: {result.output}")
 
 asyncio.run(main())
 ```
 
 ---
 
-## ð¯ Features
+## Features
 
 | Feature | Description |
 |---------|-------------|
-| ð¤ **Multi-Agent** | Run multiple AI agents in parallel |
-| ð§  **Memory** | Agents remember context across sessions |
-| ð§ **Tools** | Integrate GitHub, Slack, Jira, and more |
-| ð **Workflows** | Chain agents in sequences |
-| ðï¸ **Multi-LLM** | OpenAI, Anthropic, Ollama, Azure |
-| ð **Open Core** | MIT licensed, free forever |
+| **Multi-Agent** | Run multiple AI agents in parallel |
+| **Memory** | Agents remember context across sessions |
+| **Tools** | Integrate GitHub, Slack, Jira, and more |
+| **Workflows** | Chain agents in sequences |
+| **Multi-LLM** | OpenAI, Anthropic, Ollama, Azure |
+| **Open Core** | MIT licensed, free forever |
 
 ---
 
-## ð¦ What's Included
+## What's Included
 
 ```
 cogniwork/
-âââ __init__.py      # Package entry point
-âââ core.py          # Agent, Memory, Orchestrator
-âââ tools.py         # Tool framework & registry
-âââ config.py        # Configuration management
+    __init__.py      # Package entry point
+    core.py          # Agent, Memory, Orchestrator
+    tools.py         # Tool framework and registry
+    config.py        # Configuration management
 ```
 
 ---
 
-## ð Why CogniWork?
+## Why CogniWork?
 
 | | CogniWork | Enterprise Tools |
 |---|:---:|:---:|
 | **Price** | $0 FREE | $50K+/year |
-| **Open Source** | â MIT | â Proprietary |
-| **Self-Hosted** | â Your servers | â Their cloud |
-| **Customizable** | â Full control | â Limited |
-| **Lock-in** | â None | â Vendor lock |
+| **Open Source** | Yes (MIT) | No |
+| **Self-Hosted** | Your servers | Their cloud |
+| **Customizable** | Full control | Limited |
+| **Lock-in** | None | Vendor lock |
 
 ---
 
-## ð ï¸ Examples
+## Examples
 
 ### Code Review Pipeline
 
@@ -393,40 +174,30 @@ result = await bug_agent.run("Analyze error logs and create Jira tickets")
 
 ---
 
-## ð Documentation
+## Documentation
 
 | Resource | Link |
 |----------|------|
-| ð Getting Started | [docs.cogniwork.ai/start](https://docs.cogniwork.ai) |
-| ð§ API Reference | [docs.cogniwork.ai/api](https://docs.cogniwork.ai) |
-| ð¡ Examples | [/examples](./examples) |
-| ð¥ Video Tutorial | Coming Soon |
+| Getting Started | [docs.cogniwork.ai](https://docs.cogniwork.ai) |
+| API Reference | [docs.cogniwork.ai/api](https://docs.cogniwork.ai/api) |
+| Examples | [/examples](./examples) |
 
 ---
 
-## ð¤ Community
+## Community
 
-<div align="center">
+[![Discord](https://img.shields.io/badge/Discord-Join_Community-7C3AED?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/viseyyon)
+[![Twitter](https://img.shields.io/badge/Twitter-@viseyyon-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/viseyyon)
 
-[![Discord](https://img.shields.io/badge/ð¬_Discord-Join_Community-7C3AED?style=for-the-badge)](https://discord.gg/viseyyon)
-[![Twitter](https://img.shields.io/badge/ð¦_Twitter-@viseyyon-1DA1F2?style=for-the-badge)](https://twitter.com/viseyyon)
-[![LinkedIn](https://img.shields.io/badge/ð¼_LinkedIn-Viseyyon-0A66C2?style=for-the-badge)](https://linkedin.com/company/viseyyon)
+**Need help?** [Join Discord](https://discord.gg/viseyyon)
 
-</div>
+**Found a bug?** [Open an Issue](https://github.com/viseyyon/cogniwork-trial/issues)
 
-**Need help?** â [Discord](https://discord.gg/viseyyon)
-**Found a bug?** â [Open an Issue](https://github.com/viseyyon/cogniwork-trial/issues)
-**Want to contribute?** â [Read CONTRIBUTING.md](CONTRIBUTING.md)
+**Want to contribute?** [Read CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
-## â­ Star History
-
-If CogniWork helps you, give us a â­! It helps others discover the project.
-
----
-
-## ð License
+## License
 
 MIT License - Use it for anything. Free forever.
 
@@ -434,7 +205,7 @@ MIT License - Use it for anything. Free forever.
 
 <div align="center">
 
-**Built with ð by [Viseyyon Technologies](https://viseyyon.com)**
+**Built with care by [Viseyyon Technologies](https://viseyyon.com)**
 
 *Transform Your Business with AI-Powered Intelligence*
 
